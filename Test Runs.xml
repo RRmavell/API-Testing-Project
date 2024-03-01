@@ -1,0 +1,3475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite>
+	<id>S1</id>
+	<name>Master</name>
+	<description></description>
+	<sections>
+		<section>
+		<name>Functional Testing</name>
+		<description></description>
+						<cases>
+												<case>
+				<id>C159</id>
+				<title>Verify the API can successfully create a new booking with all required parameters</title>
+												<template>Test Case (Text)</template>
+																<type>Functional</type>
+																<priority>High</priority>
+																				<estimate></estimate>
+																								<references>https://miniprojects.atlassian.net/browse/RB-6</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>
+</preconds>
+										<steps>1. Send a POST request to the endpoint `https://restful-booker.herokuapp.com/booking`.
+2. Provide valid booking details in the request body, including:
+•	Firstname
+•	Lastname
+•	Totalprice
+•	Depositpaid
+•	checkin date
+•	checkout date
+•	additionalneeds
+3. Check if the response status code is 200.
+4. Verify that the response contains the booking ID, and the details match the provided input.
+
+</steps>
+										<expected>1. The new booking is successfully created.
+2. The response status code is 200.
+3. The response contains the booking ID, and the details match the provided input.
+
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C160</id>
+				<title>Verify if the response contains the booking details</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+								<assignedto>Emmanuel Teoxon</assignedto>
+												<estimate></estimate>
+																								<references>RB-73</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Must be connected to the internet.
+
+2. User has access to the API documentation.
+
+3. Postman needs to be up and active.
+
+4. User has all required bookings with appropriate requests using default settings and syntax, in Postman.
+
+                                                                    </preconds>
+										<steps>1. On the createBooking, go to Body tab in the upper mid part of your workspace, then click Raw.
+
+2. Enter an input on whichever field you desire(first or last name, price, etc.), then click Save.
+
+3. Proceed to getBookingID.
+
+4. Enter the bookingID of the newly created booking on step 2.
+
+
+
+
+</steps>
+										<expected>The getBookingID request should display the information of the specified unique bookingID.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C161</id>
+				<title>Verify the API&apos;s response when creating a booking with missing or invalid data.</title>
+												<template>Test Case (Text)</template>
+																<type>Functional</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>The User has access to API Documentation and Postman.</preconds>
+										<steps>1. Open the Postman App
+2. Click the Import Button and Paste the Curl Command for Post requests.
+3. Provide missing or invalid booking details in the request body (eg., missing &apos;firstname&apos;, &apos;lastname&apos;, &apos;bookingdates&apos;)
+4. Click the Send Button
+5. Check the response from the API.
+</steps>
+										<expected>The response HTTP status code must be 400 Bad Request.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C162</id>
+				<title>Verify if the API returns the appropriate error response</title>
+												<template>Test Case (Text)</template>
+																<type>Functional</type>
+																<priority>Low</priority>
+								<assignedto>Emmanuel Teoxon</assignedto>
+												<estimate></estimate>
+																								<references>RB-74</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Must be connected to the internet.
+
+2. Postman needs to be up and active.
+
+3. User has all required bookings with appropriate requests using default settings and syntax, in Postman.</preconds>
+										<steps>1. On your Postman, open each booking requests.
+
+2. Based on what input is accepted on which booking request, enter an invalid input.</steps>
+										<expected>When an input is considered invalid, it does return an appropriate error message suggesting that the input is invalid.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C163</id>
+				<title>Verify that the API can retrieve by specifying a valid booking ID.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>The User has access to API Documentation and Postman.</preconds>
+										<steps>1. Open the Postman App
+2. Click the Import Button and Paste the Curl Command for Get requests.
+3. Replace /id with the specified valid booking ID you want to retrieve, then Click the Send Button
+4. Check the response body for the retrieved booking details.</steps>
+										<expected>The response body should contain the details of the retrieved booking, including the specified valid booking ID.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C164</id>
+				<title>Confirm that the returned data matches the details of the requested booking.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>The User has access to API Documentation and Postman.</preconds>
+										<steps>1. Open the Postman App
+2. Click the Import Button and Paste the Curl Command for Post requests.
+3. Record the booking id in the response body including the details of the bookings (eg. first name, last name, booking dates)
+4. Click again the Import Button and Paste the Curl Command for Get requests.
+5. Replace /id with the booking ID that you record, then Click the Send Button
+6. Check the response from the API. 
+7. Check that all fields returned in the response body match the expected values for the requested booking.</steps>
+										<expected>The response body contains data that matches the details of the requested booking.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C165</id>
+				<title>Test the API&apos;s behavior when attempting to read a booking with a non-existent ID.</title>
+												<template>Test Case (Text)</template>
+																<type>Functional</type>
+																<priority>High</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. No booking should exist with the specified non-existent ID.</preconds>
+										<steps>1. Send a GET request to the endpoint `https://restful-booker.herokuapp.com/booking/{non_existent_id}`, replacing `{non_existent_id}` with an ID that does not exist.
+2. Check if the response status code is 404.
+
+</steps>
+										<expected>The API should respond with a 404 status code, indicating that the booking with the specified non-existent ID is not found.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C166</id>
+				<title>Ensure the API returns an appropriate error response.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C167</id>
+				<title>Test the API&apos;s ability to successfully update an existing booking with valid data.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C168</id>
+				<title>Confirm that the response indicates the successful update.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C169</id>
+				<title>Attempt to update a booking with invalid or missing data.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C170</id>
+				<title>Verify that the API rejects the update and returns the appropriate error.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C171</id>
+				<title>Test the API&apos;s capability to delete a booking using a valid booking ID.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C172</id>
+				<title>Confirm that the API returns a successful response after deletion.</title>
+												<template>Test Case (Text)</template>
+																<type>Functional</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. The User has access to API Documentation and Postman.
+2. The User has a valid Authentication Token.</preconds>
+										<steps>1. Open the Postman App
+2. Click the New HTTP Request button
+3. Enter the URL https://restful-booker.herokuapp.com/booking/id
+4. Provide booking id that exists and is accessible for deletion.
+5. Enter the valid Token in the Headers
+6. Select DELETE request and Click the Send Button
+7. Check the response from the API. 
+</steps>
+										<expected>The response HTTP body must be Created.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C173</id>
+				<title>Test the API&apos;s response when attempting to delete a non-existent or invalid booking ID.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C174</id>
+				<title>Ensure the API returns an appropriate error response.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C175</id>
+				<title>Test the API with minimum and maximum allowed values for relevant input fields.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Low</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Must be connected to the internet.
+
+2. Go to the API documentation.
+
+3. Postman needs to be up and active.
+
+4. User needs to create all booking requests with default settings and should be working properly, in Postman.
+</preconds>
+										<steps>1. On your Postman, select either Create Booking, Update Booking, or PartialUpdate Booking.
+
+2. Choose the appropriate input field to the chosen Booking:(firstname, lastname, totalprice, bookingdates, checkin, checkout, or additionalneeds)
+
+then enter a minimum of 1, or maximum of 100 character valid input.
+
+3. Click Save, and then Send.</steps>
+										<expected>For the firstname and lastname, assuming there are no one-letter firstname and lastname, then a minimum of 2 characters per individual field should be accepted.
+
+For the totalprice, assuming the cheapest service is worth 100, then a minimum of 3 digit input worth 100 should be accepted.
+
+For the bookingdates, assuming that the website started running last Jan 01 2018, then only the dates past Jan 01, 2018 should be accepted.
+
+For the checkin and checkout, assuming that there is a minimum of 1-day stay, then only the checkout date with one day more than the checkin date should be accepted.
+
+For the additionalneeds, assuming that there is a range of offered services, then only the inputs within those accepted services should be accepted.
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C176</id>
+				<title>Verify that the API handles extreme values correctly.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C177</id>
+				<title>Test CRUD operations for authenticated users.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C178</id>
+				<title>Attempt CRUD operations without proper authentication and validate the API&apos;s response.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C179</id>
+				<title>Confirm API Behavior for Past Check-in Date Validation in Booking Creation</title>
+												<template>Test Case (Text)</template>
+																<type>Functional</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-26</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Obtain API Documentation Access:
+-Ensure that the testing environment has the necessary documentation for the API, providing information on the allowed date formats, required parameters, and error responses related to booking creation.
+
+2. Set Up Postman Access:
+-Verify that the testing environment has Postman installed and configured for sending API requests. Confirm that the user has access to the Postman workspace containing the relevant API requests and environments.
+
+3. Authentication Token:
+-Confirm the availability of a valid Authentication Token for making requests to the specified endpoint (https://restful-booker.herokuapp.com/apidoc/index.html). This token should be configured for the required permissions for creating bookings.</preconds>
+										<steps>1. Open Postman and navigate to the &quot;POST&quot; request creation section.
+
+2. Enter the endpoint https://restful-booker.herokuapp.com/booking in the request URL field.
+
+3. Set the request method to &quot;POST.&quot;
+
+4. Provide valid booking details in the request body, including a check-in date in the past (e.g., &quot;2023-01-01&quot;). Include other required parameters such as &quot;firstname,&quot; &quot;lastname,&quot; &quot;totalprice,&quot; etc., to ensure a valid booking request.
+
+5. Send the POST request to the specified endpoint.
+
+6. Check the response status code returned by the API.
+</steps>
+										<expected>1. The API should respond with an error message indicating that a booking cannot have a past check-in date. The error message should be clear and informative, specifying the issue with the provided date.
+
+2. Verify that the response status code is not 200. Instead, it should be an appropriate error status code, such as 4xx or 5xx, indicating a client or server error, respectively.
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C180</id>
+				<title>Confirm API Behavior for Invalid Booking ID Format in Booking Retrieval</title>
+												<template>Test Case (Text)</template>
+																<type>Functional</type>
+																<priority>High</priority>
+																				<estimate></estimate>
+																								<references>RB-49</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1.	Obtain API Documentation Access: Ensure that the testing environment has the necessary documentation for the API, providing information on the allowed booking ID formats, required parameters, and error responses related to booking retrieval.
+
+2.	Set Up Postman Access: Verify that the testing environment has Postman installed and configured for sending API requests. -Confirm that the user has access to the Postman workspace containing the relevant API requests and environments.
+
+3.	Authentication Token: -Confirm the availability of a valid Authentication Token for making requests to the specified endpoint (https://restful-booker.herokuapp.com/booking/{invalid_format_id}).
+
+4.	Review API Endpoint Details: -Validate that the endpoint https://restful-booker.herokuapp.com/booking/{invalid_format_id} is active and corresponds to the correct booking retrieval functionality. Confirm that the API supports the specified invalid booking ID format.
+</preconds>
+										<steps>
+1. Open Postman and navigate to the &quot;GET&quot; request creation section.
+
+2. Enter the endpoint https://restful-booker.herokuapp.com/booking/{invalid_format_id}, replacing {invalid_format_id} with an invalid booking ID format, for example, a string or a format not supported by the API.
+
+3. Send the GET request to the specified endpoint.
+
+4. Check the response status code returned by the API.
+</steps>
+										<expected>1. The API should respond with an error message indicating that the provided booking ID format is invalid. The error message should be clear and informative, specifying the issue with the provided format.
+
+2. Verify that the response status code is not 200. Instead, it should be an appropriate error status code, such as 400, indicating a client error.
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C181</id>
+				<title>Confirm API Behavior for Updating Booking with Special Character in Firstname</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-54</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Existing Booking:
+-Ensure that at least one booking already exists in the system, providing a valid booking ID for the upcoming test.
+
+2. Obtain API Documentation Access:
+-Confirm that the testing environment has the necessary documentation for the API, providing information on the allowed parameters, formats, and error responses related to booking updates.
+Set Up Postman Access:
+
+3. Verify that the testing environment has Postman installed and configured for sending API requests.
+-Confirm that the user has access to the Postman workspace containing the relevant API requests and environments.
+
+4. Authentication Token:
+-Confirm the availability of a valid Authentication Token for making requests to the specified endpoint (https://restful-booker.herokuapp.com/booking/{booking_id})</preconds>
+										<steps>1. Open Postman and navigate to the &quot;PUT&quot; request creation section.
+
+2. Enter the endpoint https://restful-booker.herokuapp.com/booking/{booking_id}, replacing {booking_id} with a valid booking ID obtained from the existing bookings.
+
+3. Set the request method to &quot;PUT.&quot;
+
+4. Provide valid updated details in the request body, including a special character in the firstname (e.g., &quot;John&amp;Smith&quot;). Include other required parameters such as &quot;lastname,&quot; &quot;totalprice,&quot; etc., to ensure a valid update request.
+
+5. Include a valid authorization token in the request header.
+
+6. Send the PUT request to the specified endpoint.
+
+7. Check the response status code returned by the API.
+</steps>
+										<expected>
+1. The API should accept the special character in the firstname and update the booking successfully. Verify that the booking details, including the special character, are correctly reflected in the response.
+
+2. Verify that the response status code is 200, indicating a successful update.
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C182</id>
+				<title>Validate API Response for Deletion Attempt without Proper Authentication</title>
+												<template>Test Case (Text)</template>
+																<type>Functional</type>
+																<priority>High</priority>
+																				<estimate></estimate>
+																								<references>RB-58</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Confirm the existence of at least one booking, ensuring a valid booking ID is available for the test.
+
+2. Validate that the API documentation is accessible, providing comprehensive information on the expected behavior, error responses, and authentication requirements for booking deletion.
+
+3. Verify that the testing environment is set up with the necessary tools, such as Postman, to facilitate the creation and execution of API requests.
+
+3. Ensure that the API supports the specified endpoint (https://restful-booker.herokuapp.com/booking/{booking_id}) for booking deletion and that the endpoint is active.</preconds>
+										<steps>1. Open Postman or an API testing tool and navigate to the &quot;DELETE&quot; request creation section.
+
+2. Input the endpoint https://restful-booker.herokuapp.com/booking/{booking_id}, replacing {booking_id} with a valid booking ID obtained from existing bookings.
+
+3. Set the request method to &quot;DELETE.&quot;
+
+4. Exclude a valid authorization token in the request header.
+
+5. Send the DELETE request to the specified endpoint.
+
+6. Validate the response status code returned by the API.
+</steps>
+										<expected>1. Confirm that the API responds with an error message, validating the requirement for proper authentication during deletion. Ensure the error message is articulate and specifies the need for valid authentication.
+
+2. Verify that the response status code is not 200 but 403, validating the forbidden request due to the absence of proper authentication.
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C183</id>
+				<title>Validate API Response for Booking Update with Invalid Date Format</title>
+												<template>Test Case (Text)</template>
+																<type>Functional</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-60</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Confirm the existence of at least one booking, ensuring a valid booking ID is available for the test.
+
+2. Verify the accessibility of the API documentation, containing information on the supported date formats, required parameters, and error responses related to booking updates.
+
+3. Ensure that the testing environment is configured with the necessary tools, such as Postman, to facilitate the creation and execution of API requests.
+
+4. Confirm that the API supports the specified endpoint (https://restful-booker.herokuapp.com/booking/{booking_id}) for booking updates and that the endpoint is active.</preconds>
+										<steps>
+1. Open Postman or an API testing tool and navigate to the &quot;PUT&quot; request creation section.
+
+2. Input the endpoint https://restful-booker.herokuapp.com/booking/{booking_id}, replacing {booking_id} with a valid booking ID obtained from existing bookings.
+
+3. Set the request method to &quot;PUT.&quot;
+
+4. Provide valid updated details in the request body, including an invalid date format (e.g., &quot;01-01-2023&quot;). Include other required parameters such as &quot;firstname,&quot; &quot;lastname,&quot; &quot;totalprice,&quot; etc., to ensure a valid update request.
+
+5. Include a valid authorization token in the request header.
+
+6. Send the PUT request to the specified endpoint.
+
+7. Validate the response status code returned by the API.
+</steps>
+										<expected>1. Confirm that the API responds with an error message, validating the detection of an invalid date format in the request. The error message should provide clear information about the date format issue.
+
+2. Verify that the response status code is not 200 but 400, indicating a client error due to the invalid date format.
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C184</id>
+				<title>Verify that the API can retrieve yearly booking history</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1.        User has access to the API documentation https://restful-booker.herokuapp.com/apidoc/ 
+2.        User has access to postman app.</preconds>
+										<steps>1. Open the Postman app. 
+2. Click the Import button. 
+3. Copy and paste the “curl -i https://restful-booker.herokuapp.com/booking?checkin=2014-03-13&amp;checkout=2014-05-21” request from the API documentation.
+ 4. change your desired checkin and checkout time period in the parameter tab.
+5. click the “Send” button
+6. verify and record the API response
+</steps>
+										<expected>Specified time period should be displayed in the result window
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C185</id>
+				<title>Verify that the API accepts booking updates</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-29</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>API must accept auth credentials</preconds>
+										<steps>1. Must be connected to the internet. After providing the correct credentials to successfully access the API, 
+
+2. Proceed to copy the Booking - UpdateBooking curl to the &apos;body&apos; of Postman
+
+3. Save first in the Hotel Reservation Collection before sending the request. 
+
+
+
+</steps>
+										<expected>Updates a current booking with and recieves 200 response from server</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C186</id>
+				<title>Verify the API&apos;s response when executing a GET request as Postman runs on a multimonitor setup</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-25</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. This test should preferably be run on a laptop or desktop based computer that has a graphics/video card that supports dual or multi-monitor setups on Windows OS
+2. The API is accessible and functional.
+3. There are a various browsers installed (e.g., Chrome, Firefox, Safari, Edge)that are available for testing.</preconds>
+										<steps>1. Ensure that there are more than one D-sub/VGA/HDMI slots available on the video/graphics and connect appropriate cables to working display monitors.
+2. Go through Windows Settings or Control Panel and access the Display settings.
+3. Evaluate whether the test will be conducted on Extended Screen Setup or Duplicate/clone mode Setup.
+4. When Set as &quot;Extended&quot;, then click the &quot;Identify&quot; to determine where the web browser will be tested on and take note of how the monitors are arranged (either 2,1 or 1,2 or 1,2,3 or 2,1,3, etc)
+5. Launch Postman
+6. Maximize browser on one screen 
+7. Minimize to customized size by dragging the window handles
+8. Maximize the browser span across however number of screens available.
+6. Conduct a series of predefined API actions with number 6,7, or 8 screen setups (retrieving data, creating entries, or updating records) while taking note of the discrepancies in request response times across different screen resolutions
+7. Record and compare the time taken for each API call on each matter. 
+</steps>
+										<expected>There should be acceptable and nominal response times regardless of aspect rations and resolutions that the browser supports span or oriented on each or all screen/s.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C187</id>
+				<title>Verify the API can successfully GET Returns the ids of all the bookings that exist within the API. Can take optional query strings to search and return a subset of booking ids.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>
+</preconds>
+										<steps>Send a GET request to the endpoint https://restful-booker.herokuapp.com/booking.
+Provide valid booking details in the request body, including:
+•   Firstname
+•   Lastname
+•   checkin date
+•   checkout date
+Check if the response status code is 200.
+Verify that the response contains the booking ID.
+
+
+</steps>
+										<expected>
+The response status code is 200.
+The response contains the booking ID
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C188</id>
+				<title>Verify if URLencoded usage for PartialUpdate booking returns updated booking details</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-105, RB-43</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Must have access to API documentation.
+2. Must have valid Authentication credentials.
+3. Must have existing booking ID.</preconds>
+										<steps>1. Open Postman &amp;gt; [Collection].
+2. Import the cURL command for URLencoded example in PartialUpdateBooking from the API documentation.
+3. Replace the booking ID with existing booking if necessary.
+4. Send PATCH request.</steps>
+										<expected>The results must return a 200 OK status and updated booking details are displayed.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C189</id>
+				<title>Verify if you are getting status code of 200 for ping health check in a multimonitor setup</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-34</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has already setup x number of monitors to be configured and run on a single computer/laptop
+
+user has access to endpoint &quot;https://restful-booker.herokuapp.com/ping&quot;</preconds>
+										<steps>1. Log in to POSTMAN.
+2. Navigate to My Workspace&gt;Collection&gt;Click Add new request.
+3. Enter URL &quot;https://restful-booker.herokuapp.com/ping&quot;.
+4. Enter Script in the test tab
+pm.test(&quot;Status code is 201&quot;, function () {
+pm.response.to.have.status(201);
+});
+
+5. Select the GET method.
+6. Click the Send button.
+7. The Status code in the Response tab must be 200.
+</steps>
+										<expected>The Status code in the Response tab must be 200</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C190</id>
+				<title>Validate Booking IDs after GET Method for Specific Bookings</title>
+												<template>Test Case (Text)</template>
+																<type>Functional</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1.user has acess to test plan
+2.user has access to API documentation for the playground API restful-booker.
+3.user has to access to POSTMAN</preconds>
+										<steps>1.open the Test Plan
+2.Enter url &quot; https://restful-booker.herokuapp.com/apidoc/index.html&quot;
+3.Log in to POSTMAN
+4.Navigate to My workspace&amp;gt;Collection&amp;gt;Click Add new request
+5.Paste the cURL command from the API documentation
+6.click the send button and save
+7.verify that the status is &quot;200 OK&quot;</steps>
+										<expected>The response should provide the Booking ID numbers needed to access booking details.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C191</id>
+				<title>Verify the booking details after requesting using the GET method by bookingID.</title>
+												<template>Test Case (Text)</template>
+																<type>Functional</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1.user has access to API documentation for the playground API restful-booker.
+2.user has to access to POSTMAN
+3.the bookingID is already existing </preconds>
+										<steps>1.Enter url &quot; https://restful-booker.herokuapp.com/apidoc/index.html&quot;
+2.Log in to POSTMAN
+3.Navigate to My workspace&amp;gt;Collection&amp;gt;Click Add new request
+4.enter the url &quot;https://restful-booker.herokuapp.com/booking&quot;
+5.add the booking id in the url parameter  to retrieve specific booking details.
+6.click the send button and save
+7.verify that the status is &quot;200 OK&quot;</steps>
+										<expected>The response should contain the specific details related to the provided bookingID</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C192</id>
+				<title>Verify the creation of bookings using the POST request</title>
+												<template>Test Case (Text)</template>
+																<type>Functional</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1.user has access to API documentation for the playground API restful-booker.
+2.user has to access to POSTMAN</preconds>
+										<steps>1.Enter url &quot; https://restful-booker.herokuapp.com/apidoc/index.html&quot;
+2.Log in to POSTMAN
+3.Navigate to My workspace&amp;gt;Collection&amp;gt;Click Add new request
+4.Copy the data from &apos;booking details&apos; in the &apos;Body&apos;. You can rename the firstname and lastname for new booking details to add
+5.Click the &quot;Send&quot; button and save the request
+6.verify that the status is &quot;200 OK&quot;</steps>
+										<expected>Upon sending the request, the server should respond with a status indicating successful creation of the new booking. </expected>
+									</custom>
+							</case>
+															<case>
+				<id>C193</id>
+				<title>Verify the API token authentication using username and password.</title>
+												<template>Test Case (Text)</template>
+																<type>Functional</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1.user has access to API documentation for the playground API restful-booker.
+2.user has to access to POSTMAN</preconds>
+										<steps>1.Enter url &quot; https://restful-booker.herokuapp.com/apidoc/index.html&quot;
+2.Log in to POSTMAN
+3.Navigate to My workspace&amp;gt;Collection&amp;gt;Click Add new request
+4.Paste the cURL command from the API documentation
+5.Click the &quot;Send&quot; button and save the request
+6.verify that the status is &quot;200 OK&quot;</steps>
+										<expected>the server should respond with the token provided in the response</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C194</id>
+				<title>verify the update booking command</title>
+												<template>Test Case (Text)</template>
+																<type>Functional</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1.user has access to API documentation for the playground API restful-booker.
+2.user has to access to POSTMAN
+3.BookingID is already existing.
+4.Authentication token is newly created.</preconds>
+										<steps>1.Enter url &quot; https://restful-booker.herokuapp.com/apidoc/index.html&quot;
+2.Log in to POSTMAN
+3.Navigate to My workspace&amp;gt;Collection&amp;gt;Click Add new request
+4.enter the url &quot;https://restful-booker.herokuapp.com/booking&quot;
+5.update the id in the url parameter with the id of the booking need to update
+6.Edit the booking details in the Body tab to update the details as required.
+7.Click the &quot;Send&quot; button and save the request
+8.verify that the status is &quot;200 OK&quot;</steps>
+										<expected>The response should display any changes made to the updated booking.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C195</id>
+				<title>verify functionality of delete booking</title>
+												<template>Test Case (Text)</template>
+																<type>Functional</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1.user has access to API documentation for the playground API restful-booker.
+2.user has to access to POSTMAN
+3.BookingID is already existing.
+4.Authentication token is newly created.</preconds>
+										<steps>1.Enter url &quot; https://restful-booker.herokuapp.com/apidoc/index.html&quot;
+2.Log in to POSTMAN
+3.Navigate to My workspace&amp;gt;Collection&amp;gt;Click Add new request
+4.enter the url &quot;https://restful-booker.herokuapp.com/booking&quot;
+5.enter booking id in the url parameter to specify the booking to delete
+6.Click the &quot;Send&quot; button and save the request
+7.verify that the status is &quot;201 created&quot;</steps>
+										<expected>Upon successful execution of the request, the response status should indicate &quot;Created,&quot; confirming that the booking has been deleted successfully.
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C196</id>
+				<title>verify health check endpoint for API running status</title>
+												<template>Test Case (Text)</template>
+																<type>Functional</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1.user has access to API documentation for the playground API restful-booker.
+2.user has to access to POSTMAN</preconds>
+										<steps>1.Enter url &quot; https://restful-booker.herokuapp.com/apidoc/index.html&quot;
+2.Log in to POSTMAN
+3.Navigate to My workspace&amp;gt;Collection&amp;gt;Click Add new request
+4.Paste the cURL command from the API documentation
+5.run test script for validate the response data
+    pm.test(&quot;Status code is 201&quot;, function () {
+    pm.response.to.have.status(201);
+    });
+6.click the send button and save
+7.verify that the response status is &quot;201 created&quot;</steps>
+										<expected>the response tab should display a status of &quot;Created,&quot; indicating that the API is running and operational.
+</expected>
+									</custom>
+							</case>
+								</cases>
+							</section>
+			<section>
+		<name>Data Validation Testing</name>
+		<description></description>
+						<cases>
+												<case>
+				<id>C197</id>
+				<title>Test the API&apos;s response to valid characters in input fields.</title>
+												<template>Test Case (Text)</template>
+																<type>Acceptance</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>None </preconds>
+										<steps>1. Send a POST request to the endpoint `https://restful-booker.herokuapp.com/booking`.
+2. Provide valid booking details in the request body, ensuring that input fields contain valid characters:
+•	firstname: Use alphabets and common special characters (e.g., John-Smith)
+•	lastname: Use alphabets and common special characters (e.g., Doe@123)
+•	totalprice: Use a valid numeric value (e.g., 150)
+•	depositpaid: Set to either true or false
+•	checkin date: Use a valid date format (e.g., &quot;2024-02-01&quot;)
+•	checkout date: Use a valid date format (e.g., &quot;2024-02-03&quot;)
+•	additionalneeds: Include valid additional needs (e.g., &quot;Late check-in&quot;)
+3. Check if the response status code is 200.
+4. Verify that the response contains the booking ID, and the details match the provided input.
+</steps>
+										<expected>1. The new booking is successfully created with valid characters in input fields.
+2. The response status code is 200.
+3. The response contains the booking ID, and the details match the provided input.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C198</id>
+				<title>Confirm that the API processes and stores data with valid characters correctly.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C199</id>
+				<title>Test the API&apos;s behavior when receiving input with invalid characters.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C200</id>
+				<title>Ensure the API handles and rejects such input appropriately.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C201</id>
+				<title>Verify the API&apos;s handling of numeric data types in relevant fields.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C202</id>
+				<title>Verify the input fields of createBooking using incorrect inputs</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Low</priority>
+								<assignedto>Emmanuel Teoxon</assignedto>
+												<estimate></estimate>
+																								<references>RB-72</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Must be connected to the internet.
+
+2. Postman needs to be up and active. 
+
+3. User must have created all required bookings with appropriate requests using default settings and syntax, in Postman.</preconds>
+										<steps>1. On your Postman, open each booking requests.
+
+2. Enter an incorrect input, based on which input field (firstname, lastname, totalprice, etc.) to fill in.
+
+3. Click Save, then Send.
+
+ </steps>
+										<expected>Entering a different input data type from what is accepted should not be allowed.
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C203</id>
+				<title>Verify that the API does not allow invalid date formats when creating booking</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-48, RB-110</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Must have access to API documentation.
+2. Must have valid Authentication credentials.</preconds>
+										<steps>1. Open Postman &amp;gt; [Collection].
+2. Import the cURL command for CreateBooking request.
+3. Go to the Body tab, and then select raw.
+4. Replace the values for checkin and checkout fields with invalid date formats.
+
+MM-DD-CCYY (02-07-2024)
+DD-MM-CCYY (31-07-2024)
+
+string (abcd)
+numeric (1234)
+null/empty
+
+
+5. Send POST request.
+</steps>
+										<expected>The booking is not created and results must return a 400 Bad Request status due to invalid date format.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C204</id>
+				<title>Verify that the API validates date values that exceed number of days in a given month</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Must have access to API documentation.
+2. Must have valid Authentication credentials.</preconds>
+										<steps>1. Open Postman &amp;gt; [Collection].
+2. Import the cURL command for CreateBooking request.
+3. Go to the Body tab, and then select raw.
+4. Replace the value for checkin and checkout fields with dates that exceed the number of days in a given month.
+
+For example: 
+
+February with only 29 days:
+
+&quot;checkin&quot; : &quot;2024-02-28&quot;,
+&quot;checkout&quot; : &quot;2024-02-30&quot;
+
+September with only 30 days:
+
+&quot;checkin&quot; : &quot;2024-09-29&quot;,
+&quot;checkout&quot; : &quot;2024-09-31&quot;
+
+5. Send POST request.
+
+</steps>
+										<expected>The results must return a 400 Bad Request status due to date value that exceeds the number of days in a given month.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C205</id>
+				<title>Verify the API&apos;s response when submitting requests with missing mandatory fields.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>The User has access to API Documentation and Postman.</preconds>
+										<steps>1. Open the Postman App
+2. Click Import and Paste the Curl Command for Post requests.
+3. Configure the request to deliberately omit one or more mandatory fields from the request body.
+4. Click Send Button
+5. Check the response from the API.</steps>
+										<expected>The response HTTP status code must be 400 Bad Request.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C206</id>
+				<title>Confirm that the API returns the appropriate validation errors.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C207</id>
+				<title>Test the API&apos;s behavior with input values at the minimum and maximum boundaries.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C208</id>
+				<title>Validate that the API responds appropriately.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C209</id>
+				<title>Test the API&apos;s handling of special characters in input fields.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C210</id>
+				<title>Confirm that the API processes special characters correctly.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C211</id>
+				<title>Validate an attempt to create a booking with data that duplicates existing records</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. The User has access to API Documentation and Postman.
+2. Existing bookings are available in the system for testing duplication.</preconds>
+										<steps>1. Open the Postman App
+2. Click the Import Button and Paste the Curl Command for Get requests.
+3. Replace /id with the booking ID you want to retrieve the existing data in the system, then Click the Send Button
+4. Note down the details in the response body of existing bookings to use for duplication testing.
+5. Click the Import Button and Paste the Curl Command for Post requests.
+6. Replace in the request body the details of the existing booking you received, then Click the Send Button
+7. Check the response from the API.
+ 
+</steps>
+										<expected>The response HTTP status code must be 400 Bad Request.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C212</id>
+				<title>Verify that the API prevents the creation of duplicate data.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C213</id>
+				<title>Test the API&apos;s response to input fields with lengths exceeding the defined limits.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C214</id>
+				<title>Confirm that the API rejects excessively long input.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C215</id>
+				<title>Combine multiple validation scenarios (e.g., special characters, numeric input, mandatory fields) in a single request.•	Combine multiple validation scenarios (e.g., special characters, numeric input, mandatory fields) in a single request.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C216</id>
+				<title>Verify that the API handles all validations correctly.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C217</id>
+				<title>Validate API Response for Booking Creation with Total Price Exceeding Limit</title>
+												<template>Test Case (Text)</template>
+																<type>Acceptance</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-62</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Verify the accessibility of the API documentation, containing information on the allowed total price range, required parameters, and error responses related to booking creation.
+
+2. Ensure that the testing environment is configured with the necessary tools, such as Postman, to facilitate the creation and execution of API requests.
+
+3. Confirm that the API supports the specified endpoint (https://restful-booker.herokuapp.com/booking) for booking creation and that the endpoint is active.</preconds>
+										<steps>1. Open Postman or an API testing tool and navigate to the &quot;&quot;POST&quot;&quot; request creation section.
+
+2. Input the endpoint https://restful-booker.herokuapp.com/booking.
+
+3. Set the request method to &quot;&quot;POST.&quot;&quot;
+
+4. Provide valid booking details in the request body, including a total price value exceeding the defined limit (e.g., 1000000).
+
+5. Send the POST request to the specified endpoint.
+
+6. Validate the response status code returned by the API.
+</steps>
+										<expected>1. Confirm that the API responds with an error message, validating the detection of a total price value that exceeds the defined limit. The error message should provide clear information about the limit violation.
+
+2. Verify that the response status code is not 200 but 400, indicating a client error due to the total price exceeding the limit.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C218</id>
+				<title>Validate API Response for Booking Retrieval with Expired Token</title>
+												<template>Test Case (Text)</template>
+																<type>Acceptance</type>
+																<priority>High</priority>
+								<assignedto>Kent Arvin Delos Santos</assignedto>
+												<estimate></estimate>
+																								<references>RB-64</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Verify the existence of at least one booking, ensuring a valid booking ID is available for the test.
+
+2. Confirm the availability of the tools required to generate authentication tokens and execute API requests, such as Postman.
+
+3. Verify the accessibility of the API documentation, containing information on token expiration and the associated error responses.
+
+4. Ensure that the API supports the specified endpoint (https://restful-booker.herokuapp.com/booking/{booking_id}) for booking retrieval and that the endpoint is active.</preconds>
+										<steps>1. Generate an authentication token with a predetermined expiration time.
+
+2. Open Postman or an API testing tool and navigate to the &quot;&quot;GET&quot;&quot; request creation section.
+
+3. Input the endpoint https://restful-booker.herokuapp.com/booking/{booking_id}, replacing {booking_id} with a valid booking ID obtained from existing bookings.
+
+4. Set the request method to &quot;&quot;GET.&quot;&quot;
+
+5. Include the generated token in the request header.
+
+6. Allow the token to expire.
+
+7. Send the GET request to the specified endpoint.
+
+8. Validate the response status code returned by the API.
+</steps>
+										<expected>1. Confirm that the API responds with an error message, validating the detection of an expired token during the booking retrieval attempt. The error message should provide clear information about the token expiration.
+
+2. Verify that the response status code is not 200 but 401, indicating an unauthorized request due to the expired token.
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C219</id>
+				<title>Verify that API does not allow invalid boolean format when creating booking</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-59</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Must have access to API documentation.
+2. Must have valid Authentication credentials.</preconds>
+										<steps>1. Open Postman &amp;gt; [Collection].
+2. Import the cURL command for CreateBooking request.
+3. Go to the Body tab, and then select raw.
+4. Replace the value for the depositpaid field with invalid values.
+ 
+For example:
+
+String
+depositpaid=maybe
+
+Null or empty
+depositpaid=null
+depositpaid=
+
+
+Case Sensitivity use UPPERCASE values
+&quot;TRUE&quot;, &quot;FALSE&quot;
+
+
+5. Send POST request.
+</steps>
+										<expected>The booking is not created and results must return a 400 Bad Request status due to invalid boolean format.
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C220</id>
+				<title>Verify that API allows encoding space characters for Filter by name query strings</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Must have access to API documentation.
+2. Must have a collection set up in Postman. 
+3. Must have valid authentication. 
+3. Retrieving all booking IDs is functioning correctly.
+4. Retrieving subset of booking IDs using firstname and lastname is functioning correctly. (C142)
+ 
+</preconds>
+										<steps>1. Submit a create booking request with firstname and lastname that contain spaces.
+2. Verify that the booking is created by querying the booking ID.
+3. Search for the booking using the firstname and lastname in the query string:
+
+curl -i https://restful-booker.herokuapp.com/booking?firstname=john%20mark&amp;lastname=de%20los%20reyes
+curl -i https://restful-booker.herokuapp.com/booking?firstname=john+mark&amp;lastname=de+los+reyes
+</steps>
+										<expected>The results must return a 200 OK status ensuring that the API allows encoding space characters. </expected>
+									</custom>
+							</case>
+															<case>
+				<id>C221</id>
+				<title>Verify that the API handle the specific booking based upon the booking id provided</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<steps>Send a GET request to the endpoint https://restful-booker.herokuapp.com/booking/:id
+Provide valid booking details in the request body, including:
+•id
+Check if the response status code is 200.
+Verify that the response contains ID.</steps>
+										<expected>The Response status code is OK 200.
+The response contains Firstname, Lastname, Totalprice, depositpaid, Bookingdates, Checkin, checkout &amp; additionalneeds.
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C222</id>
+				<title>Verify that the API handle the specific booking filtered by the first and last name</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-28</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>Pre-existing data has just been either previously entered or has been in the data base for a while.  </preconds>
+										<steps>1. Send a GET request to the endpoint https://restful-booker.herokuapp.com/booking?firstname=sally&amp;lastname=brown
+2. Provide valid booking details in the request body filtered by the first name and last name.
+3. Check if the response status code is 200.
+4. Verify that the response contains ID.</steps>
+										<expected>Returns the ids of all the bookings that exist within the API. Can take optional query strings to search and return a subset of booking ids.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C223</id>
+				<title>Verify that the API handle the specific booking filtered by the checkin and checkout date</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-33</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>Pre-existing data has just been either previously entered or has been in the data base for a while.</preconds>
+										<steps>1. Send a GET request to the endpoint https://restful-booker.herokuapp.com/booking?checkin=2014-03-13&amp;checkout=2014-05-21
+2. Provide valid booking details in the request body filtered by the checkin and checkout dates, respectively.
+3. Check if the response status code is 200.
+4. Verify that the response contains ID.</steps>
+										<expected>Returns the ids of all the bookings that exist within the API. Can take optional query strings to search and return a subset of booking ids.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C224</id>
+				<title>test pls ignore</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C225</id>
+				<title>Verify that API does not allow invalid boolean format when updating booking</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Must have access to API documentation.
+2. Must have valid Authentication credentials.</preconds>
+										<steps>1. Open Postman &amp;gt; [Collection].
+2. Import the cURL command for UpdateBooking request.
+3. Go to the Body tab, and then select raw.
+4. Replace the value for the depositpaid field with invalid values.
+ 
+For example:
+
+String
+depositpaid=maybe
+
+Null
+depositpaid=null
+
+Case Sensitivity use UPPERCASE values
+&quot;TRUE&quot;, &quot;FALSE&quot;
+
+
+5. Send PUT request.</steps>
+										<expected>The booking is not updated and results must return a 400 Bad Request status due to invalid boolean format.</expected>
+									</custom>
+							</case>
+								</cases>
+							</section>
+			<section>
+		<name>Error Handling Testing</name>
+		<description></description>
+						<cases>
+												<case>
+				<id>C226</id>
+				<title>Verify the API&apos;s response when sending a request to an invalid endpoint</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>The User has access to API Documentation and Postman.</preconds>
+										<steps>1. Open the Postman App
+2. Click New HTTP Request
+3. Enter the URL https://restful-booker.herokuapp.com/bookings
+4. Select GET request and Click the Send Button
+5. Check the response from the API.</steps>
+										<expected>The response HTTP status code must be 404 Not Found.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C227</id>
+				<title>Confirm that the API returns a proper error response.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C228</id>
+				<title>Send requests with HTTP methods not supported by the API (e.g., GET to an endpoint that only supports POST).</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C229</id>
+				<title>Validate error response when sending a request with an invalid HTTP method to a specific endpoint</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. The User has access to API Documentation and Postman.
+2. The endpoint to be tested supports multiple HTTP methods</preconds>
+										<steps>1. Open the Postman App
+2. Click the Import Button and Paste the Curl Command for Post requests.
+3. Replace the Post request method with the Patch request method.
+4. Click the Send Button
+5. Check the response from the API.
+
+ 
+</steps>
+										<expected>The response HTTP status code is 405 Method Not Allowed.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C230</id>
+				<title>Send requests with incorrect formats (malformed JSON, missing headers, etc.).</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C231</id>
+				<title>Confirm that the API rejects and appropriately responds to malformed requests.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C232</id>
+				<title>Test the API&apos;s error responses for sensitivity by deliberately causing errors.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C233</id>
+				<title>Verify if the error messages do not disclose sensitive information</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Low</priority>
+								<assignedto>Emmanuel Teoxon</assignedto>
+												<estimate></estimate>
+																								<references>RB-71</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Must be connected to the internet.
+
+2. Postman needs to be up and active.
+
+3. User must have created all required bookings with appropriate requests using default settings and syntax, in Postman.                                                                      </preconds>
+										<steps>1. On your Postman, open each booking requests.
+
+2. Based on what input is asked, enter an invalid input.
+
+</steps>
+										<expected>Any of the booking requests should not disclose any sensitive informations upon encountering an error.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C234</id>
+				<title>Introduce unexpected errors in the system (e.g., simulate a database failure).</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C235</id>
+				<title>Verify that the API handles such errors gracefully and returns appropriate responses.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C236</id>
+				<title>Test the API&apos;s response when submitting requests with validation errors.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C237</id>
+				<title>Confirm that error messages are informative and guide the user on fixing the issues.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C238</id>
+				<title>Test CRUD operations without proper authentication.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C239</id>
+				<title>Confirm that the API returns unauthorized access responses.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C240</id>
+				<title>Use an expired or invalid authentication token.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C241</id>
+				<title>Verify that the API responds with an appropriate authentication error.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C242</id>
+				<title>Send multiple overlapping requests concurrently.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C243</id>
+				<title>Verify that the API handles concurrent requests gracefully and does not result in data corruption.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C244</id>
+				<title>Introduce scenarios where requests exceed expected response times.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C245</id>
+				<title>Confirm that the API times out appropriately and returns the correct error response.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C246</id>
+				<title>Validate API Response for Booking Creation with Invalid Authentication Token</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>High</priority>
+																				<estimate></estimate>
+																								<references>RB-66</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Verify the existence of at least one booking, ensuring a valid booking ID is available for the test.
+
+2. Confirm the availability of the tools required to execute API requests, such as Postman.
+
+3. Verify the accessibility of the API documentation, containing information on authentication requirements and associated error responses.
+
+4. Ensure that the API supports the specified endpoint (https://restful-booker.herokuapp.com/booking/{booking_id}) for booking deletion and that the endpoint is active.</preconds>
+										<steps>1. Modify the obtained authentication token to make it invalid.
+
+2. Send a POST request to the endpoint https://restful-booker.herokuapp.com/booking.
+
+3. Include the modified authentication token in the request header.
+
+4. Check if the response status code is 401 (Unauthorized).
+</steps>
+										<expected>1. The API should respond with an error indicating an invalid authentication token during booking creation.
+
+2. The response status code is 401.
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C247</id>
+				<title>Verify API Response for Booking Deletion Attempt Without Proper Authentication</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>High</priority>
+																				<estimate></estimate>
+																								<references>RB-67</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Verify the existence of at least one booking, ensuring a valid booking ID is available for the test.
+
+2. Confirm the availability of the tools required to execute API requests, such as Postman.
+
+3. Verify the accessibility of the API documentation, containing information on authentication requirements and associated error responses.
+
+4. Ensure that the API supports the specified endpoint (https://restful-booker.herokuapp.com/booking/{booking_id}) for booking deletion and that the endpoint is active.</preconds>
+										<steps>1. Open Postman or an API testing tool and navigate to the &quot;&quot;DELETE&quot;&quot; request creation section.
+
+2. Input the endpoint https://restful-booker.herokuapp.com/booking/{booking_id}, replacing {booking_id} with a valid booking ID obtained from existing bookings.
+
+3. Set the request method to &quot;&quot;DELETE.&quot;&quot;
+
+4. Do not include a valid authentication token in the request header.
+
+5. Send the DELETE request to the specified endpoint.
+
+6. Verify and confirm the response status code returned by the API.
+</steps>
+										<expected>1. Confirm that the API responds with an error message, verifying the requirement for proper authentication during the booking deletion attempt. The error message should provide clear information about the lack of proper authentication.
+
+2. Verify and confirm that the response status code is not 200 but 403, indicating a forbidden request due to the absence of proper authentication.
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C248</id>
+				<title>Verify  API response when retrieving a deleted booking history.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+								<assignedto>Catherine Alivio</assignedto>
+												<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1.        User has access to the API documentation https://restful-booker.herokuapp.com/apidoc/ 
+2.        User has access to postman app.</preconds>
+										<steps>1.        Open API documentation and copy createbooking curl
+2.        Open postman app
+3.        Click import. Paste the copied curl
+4.        Click send button
+5.        Take note of the booking id
+6.        From the API documentation copy deletebooking curl
+7.        In the postman app click import button
+8.        Paste the deletebooking curl. Change the booking id that you wish to delete
+9.        Copy the getbooking curl from the API documentation
+10.        Click import button from postman and paste the copied curl
+11.        Change the booking ID that you deleted previously
+12.        Click send button 
+13.        Take note of the result and record the API response
+</steps>
+										<expected>The API should have a clear indication that the requested booking history does not exist due to deletion.
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C249</id>
+				<title>Verify error handling of invalid values for Filter by name query strings</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Must have access to API documentation.
+2. Must have valid Authentication credentials.
+3. Retrieving all booking IDs is functioning correctly.
+4. Retrieving subset of booking IDs using query strings is functioning correctly. (C142)</preconds>
+										<steps>1. Open Postman &amp;gt; [Collection].
+2. Import the cURL command for GetBookingIDs with Filter by name parameters.
+3. Replace the values for firstname and lastname with the following invalid values
+
+firstname=null&amp;lastname=null
+firstname=xxxx&amp;lastname=yyyy
+firstname=0000&amp;lastname=1111
+firstname=$$@0011!!&amp;lastname=$$@0011!!
+
+4. Send the GET request.
+</steps>
+										<expected>The results must return a 400 Bad Request status due to invalid values for Filter by name query strings.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C250</id>
+				<title>Test the API&apos;s response to an invalid authentication token during Booking - PartialUpdateBooking</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-31</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>Obtain a valid authentication token.</preconds>
+										<steps>1. Modify the obtained authentication token to make it invalid.
+2. Proceed to the https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-PartialUpdateBooking and copy the curl on the link.  
+3. Verify that the PATCH method is applied for the request.
+4. Send the request to the endpoint https://restful-booker.herokuapp.com/booking/:id
+5. Include the modified authentication token in the request header.
+6. Check if the response status code is 401 (Unauthorized).
+</steps>
+										<expected>The API should respond with an error indicating an invalid authentication token during booking update.
+The response status code is 401.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C251</id>
+				<title>Test the API&apos;s response to an invalid authentication token during Booking Update</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-32</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>Obtain a valid authentication token.</preconds>
+										<steps>1. Modify the obtained authentication token to make it invalid.
+2. Proceed to the https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-UpdateBooking and copy the curl on the link.  
+3. Verify that the PUT method is applied for the request.
+4. Send the request to the endpoint https://restful-booker.herokuapp.com/booking/:id
+5. Include the modified authentication token in the request header.
+6. Check if the response status code is 401 (Unauthorized).</steps>
+										<expected>The API should respond with an error indicating an invalid authentication token during booking update.
+The response status code is 401.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C252</id>
+				<title>Verify Invalid Credentials</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<steps>Partial update booking using search filters is functioning correctly.
+curl -X PATCH \
+  https://restful-booker.herokuapp.com/booking/1 \
+  -H &apos;Content-Type: application/json&apos; \
+  -H &apos;Accept: application/json&apos; \
+  -H &apos;Cookie: token=abc123&apos; \
+  -d &apos;{
+    &quot;firstname&quot; : &quot;123451&quot;,
+    &quot;lastname&quot; : &quot;@#$%^&amp;&quot;
+}&apos;
+</steps>
+										<expected>Must return client error 4** Bad request</expected>
+									</custom>
+							</case>
+								</cases>
+							</section>
+			<section>
+		<name>Performance Testing</name>
+		<description></description>
+						<cases>
+												<case>
+				<id>C253</id>
+				<title>•	Execute CRUD operations under normal load conditions.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C254</id>
+				<title>Verify that the average response times of concurrent requests meet performance target</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-56</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Must have access to API documentation.
+2. Must have valid Authentication credentials.</preconds>
+										<steps>1. Open Postman.
+2. Create a collection.
+3. Add CreateBooking, GetBooking, and UpdateBooking requests.
+
+
+For GetBooking and UpdateBooking requests, do the following:
+
+a. Add the following script in the Tests tab.
+
+const jsonResp = pm.response.json()
+pm.environment.set(&quot;bookingid&quot;, jsonResp.bookingid);
+
+b. In the URL endpoint, add the variable &quot;{{bookingid}}&quot;. For example, https://restful-booker.herokuapp.com/booking/{{bookingid}}
+
+
+4. Click the Collection &gt; Runs &gt; Performance &gt; Run Performance Test.
+5. Set Load profile to Fixed.
+6. Set the number of virtual users to 20,40, 60, 80, 100 (max).
+
+
+Note: Increase the number of virtual users gradually.
+
+7. Set test duration to 1 minute.
+8. Click Run.
+9. Observe average response times per test run.</steps>
+										<expected>The average response times of at least 90% of the requests must be within the range of 200 to 500ms.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C255</id>
+				<title>•	Increase the load on the API to simulate peak usage.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C256</id>
+				<title>•	Measure and validate that the API continues to respond within acceptable time frames.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C257</id>
+				<title>•	Gradually increase the number of requests per second.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C258</id>
+				<title>•	Evaluate the API&apos;s throughput and identify potential bottlenecks.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C259</id>
+				<title>Verify that the API can handle multiple concurrent CRUD operations without any error response</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. The User has access to API Documentation and Postman.
+2. The User must have valid Authentication credentials.
+</preconds>
+										<steps>1. Open the Postman
+2. Create a collection
+3. Add CRUD requests, including booking creation, booking retrieval, booking modification, and booking deletion. 
+For Create Booking requests, do the following:
+
+Add the following script in the Tests tab.
+var jsonData = pm.response.json();
+pm.environment.set(&quot;b_id&quot;, jsonData.bookingid);
+
+For Get Booking, Update Booking and Delete Booking requests, do the following:
+In the URL endpoint, add the variable &quot;{{b_id}}&quot;. For example, https://restful-booker.herokuapp.com/booking/{{b_id}}
+
+4. Click the Collection &gt; Runs &gt; Performance &gt; Run Performance Test
+5. Set Load profile to Fixed.
+6. Set the number of virtual users to 20, 40, 60, 80, 100 (max).
+Note: Increase the number of virtual users gradually.
+7. Set the test duration to 2 minutes, then Click Run.
+8. Monitor the response status codes and messages for each CRUD operation.
+9. To check results for all Performance test runs, click the Collection name &gt; Runs &gt; Performance.
+ 
+</steps>
+										<expected>Concurrent CRUD operations should complete successfully without any errors response.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C260</id>
+				<title>Verify that the API can handles concurrent booking creation request without data integrity issues or conflicts.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>The User has access to API Documentation and Postman.</preconds>
+										<steps>1. Open the Postman App
+2. Create a Collection
+3. Click the Import Button and Paste the Curl Command for Post requests, then save it to the Collection you create.
+4. Click the Collection &amp;gt; Runs &amp;gt; Functional &amp;gt; Run Collection
+5. Choose Collection as Run Manually
+6. Set the iterations to 20, then click Run API Testing Project
+7. Vary the payload data and ensure that multiple requests may attempt to book the same room or overlapping time slots.
+8. Monitor the response status codes and messages for each booking creation request.</steps>
+										<expected>Concurrent booking requests should result in successful bookings without errors, conflicts or overlapping reservations response.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C261</id>
+				<title>•	Test CRUD operations with a large dataset.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C262</id>
+				<title>•	Measure and validate that the API response time remains reasonable.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C263</id>
+				<title>•	Increase the number of servers or resources dedicated to the API.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C264</id>
+				<title>•	Evaluate the API&apos;s scalability under varying levels of load.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C265</id>
+				<title>Verify the CPU, memory, and network utilization</title>
+												<template>Test Case (Text)</template>
+																<type>Performance</type>
+																<priority>Low</priority>
+								<assignedto>Emmanuel Teoxon</assignedto>
+												<estimate></estimate>
+																								<references>RB-70</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Must be connected to the internet.
+
+2. Postman and Task Manager(or equivalent) needs to be up and active.  
+
+3. User has all required bookings with appropriate requests using default settings and syntax, in Postman.
+</preconds>
+										<steps>1. Right-Click your Project Collection in Postman.
+
+2. Select &quot;Run Collection&quot;.
+
+3. Select all request methods in the collection.
+
+4. Set the Run Configuration iteration parameter into 50 (user&apos;s preference)
+
+5. Click &quot;Run Restful Booker API&quot;.
+
+6. Go to the Processes tab in Task Manager or Activity Monitor, and record the CPU, Network, and Memory usage.
+
+
+
+
+
+
+
+
+
+
+</steps>
+										<expected>The average usage of CPU (19.03%), Network (0.2 Mbps), and Memory (15.97%) is considered minimal, granted that the device has modern overall specifications.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C266</id>
+				<title>•	Identify any resource-related issues that may affect performance.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C267</id>
+				<title>•	Execute long-duration tests to identify potential memory leaks or performance degradation over time.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C268</id>
+				<title>•	Monitor system resources continuously during extended testing periods.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C269</id>
+				<title>•	Test the API with load balancing configurations.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C270</id>
+				<title>•	Verify that the API scales horizontally and effectively distributes the load.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C271</id>
+				<title>•	Simulate server failures or network interruptions.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C272</id>
+				<title>•	Verify that the API fails over to alternate servers and maintains continuous service.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C273</id>
+				<title>Performance Evaluation for API Under High Concurrent User Load</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>High</priority>
+								<assignedto>Kent Arvin Delos Santos</assignedto>
+												<estimate></estimate>
+																								<references>RB-68</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Verify that the API server is properly configured and running smoothly.
+
+2. Ensure the system is in a stable state with normal load conditions before initiating the performance test.
+</preconds>
+										<steps>1. Gradually increase the number of concurrent users sending CRUD operations to the API.
+
+2. Measure and analyze the API&apos;s response times under increasing load.
+
+3. Ensure the API continues to respond within acceptable time frames.
+
+4. Monitor system resources (CPU, memory, and network utilization) during the test.
+</steps>
+										<expected>1. The API should demonstrate stable and acceptable response times under high concurrent user load.
+
+2. System resources, including CPU, memory, and network utilization, should be within acceptable limits.
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C274</id>
+				<title>Evaluate the performance of the API using different browsers</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-24</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. The API is accessible and functional.
+2. There are a various browsers installed (e.g., Chrome, Firefox, Safari, Edge)that are available for testing.</preconds>
+										<steps>1. Select Browser Versions
+2. Open the API in each selected browser.
+3. Execute a series of predefined API actions in each browser, such as retrieving data, creating entries, or updating records.
+4. Record the time taken for each API call in each browser.</steps>
+										<expected>The API should demonstrate consistent and acceptable response times across various web browsers, ensuring users experience optimal performance.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C275</id>
+				<title>Evaluate behavior when refreshing API website.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Access to the API website using valid user account.</preconds>
+										<steps>1.	Open the API website in your preferred browser.
+2.	Log in to your account.
+3.	Navigate or explore the website.
+4.	Perform an action that will change the website default state.
+5.	Record or take note of the current state.
+6.	Refresh the browser page.
+ </steps>
+										<expected>After refreshing the page, the website should maintain the pre-refresh state.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C276</id>
+				<title>Evaluate the performance of the API using mobile phone.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>The API is accessible and functional.
+Mobile phone for testing.</preconds>
+										<steps>1. Select a mobile device.
+2. Access API website on the mobile device.
+3. Perform API functions such as creating booking, retrieving a booking, updating a booking or deleting a booking.
+4. Record the response time for each function. 
+</steps>
+										<expected>1. The API should be able to adopt to the mobile phone screen resolution and orientation (portrait or landscaped).
+2. All the function options should be accessible with a reasonable response time.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C277</id>
+				<title>Evaluate the performance of the API across different emulated screen resolutions</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-30</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Use Postman online version
+2. The API is accessible and functional.
+3. There are a various browsers installed (e.g., Chrome, Firefox, Safari, Edge)that are available for testing with concurrent EMULATED MODE available.
+</preconds>
+										<steps>1. Upon selecting the web browser where the API is to be run on, 
+2. Launch POSTMAN in the browser (not the stand alone version) and ensure that api has valid / authorized credentials
+3. Right click on the screen and click &quot;Inspection&quot;
+4. Execute a series of predefined API actions (retrieving data, creating entries, or updating records) while taking note of the discrepancies in request response times across different screen resolutions 
+5. Record the time taken for each API call in each browser.</steps>
+										<expected>There should be acceptable and nominal response times regardless of aspect rations and resolutions that the browser supports.</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C278</id>
+				<title>Verify the performance quality of the API using a browser on a Bluestacks emulator</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Low</priority>
+								<assignedto>Emmanuel Teoxon</assignedto>
+												<estimate></estimate>
+																								<references>RB-123</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Must be connected to the internet. 
+
+2. User has access to the API documentation.
+
+3. User has a Bluestacks emulator installed on a computer.
+
+4. Various browsers are installed on the emulator.
+
+</preconds>
+										<steps>1. On your Bluestacks, open the browser version of a Postman on each and every browser installed, one at a time.
+
+2. Create all required Postman requests, as per the documentation.
+
+3. Execute a series of predefined API actions, such as retrieving data, creating entries, or updating records, based on which bookings are tested.
+
+4. Record findings such as status codes, various browser&apos;s response time and outputs comparison.
+</steps>
+										<expected>The API should demonstrate consistent and acceptable responses across various web browsers, ensuring user&apos;s optimal experience.
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C279</id>
+				<title>evaluate the API on different platforms, devices and browsers to ensure compatibility.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>The API is accessible and functional.
+There are a Bloatware browsers installed that are available for testing.
+</preconds>
+										<steps>User Desktop, Android &amp; IOs
+Open the API in each bloatware browser.
+Execute a series of predefined API actions in each browser, such as retrieving data, creating entries, or updating records.
+Record the time taken for each API call in each browser.
+</steps>
+										<expected>The API should demonstrate consistent and acceptable response times across various web browsers, ensuring users experience optimal performance.
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C280</id>
+				<title>Verify if you are getting status code of 200 for ping health check across EMULATED MODE resolutions.</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-34</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. user has already setup POSTMAN running with EMULATED MODE on any browser of choice.
+
+2. user has access to endpoint &quot;&quot;https://restful-booker.herokuapp.com/ping&quot;&quot;
+
+ 
+</preconds>
+										<steps>1. Log in to POSTMAN.
+2. Navigate to My Workspace&amp;gt;Collection&amp;gt;Click Add new request.
+3. Enter URL &quot;https://restful-booker.herokuapp.com/ping&quot;.
+4. Enter Script in the test tab
+pm.test(&quot;Status code is 201&quot;, function () {
+pm.response.to.have.status(201);
+});
+5. Select the GET method.
+6. Click the Send button.
+7. The Status code in the Response tab must be 201.</steps>
+										<expected>The Status code in the Response tab must be 200</expected>
+									</custom>
+							</case>
+								</cases>
+							</section>
+			<section>
+		<name>General CRUD</name>
+		<description></description>
+						<cases>
+												<case>
+				<id>C281</id>
+				<title>Verify if you  are getting status code of 201 for ping health check</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-78</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoint &quot;https://restful-booker.herokuapp.com/ping&quot;</preconds>
+										<steps>1. Log in to POSTMAN.
+2. Navigate to My Workspace&gt;Collection&gt;Click Add new request.
+3. Enter URL &quot;https://restful-booker.herokuapp.com/ping&quot;.
+4. Enter Script in the test tab
+    pm.test(&quot;Status code is 201&quot;, function () {
+    pm.response.to.have.status(201);
+    });
+5. Select the GET method.
+6. Click the Send button.
+7. The Status code in the Response tab must be 201.
+</steps>
+										<expected> The Status code in the Response tab must be 201</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C282</id>
+				<title>Verify if you are getting response body string as Created for ping health check</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-79</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoint &quot;https://restful-booker.herokuapp.com/ping&quot;
+</preconds>
+										<steps>1. Login to POSTMAN.
+2. Navigate to My Workspace&gt;Collection&gt;Click Add new request.
+3. Enter the URL &quot;https://restful-booker.herokuapp.com/ping&quot;.
+4. Enter the Script in the test tab.
+pm.test(&quot;Body matches string&quot;, function () {
+    pm.expect(pm.response.text()).to.include(&quot;Created&quot;);
+});
+5. Select GET request.
+6. Click the Send.
+7. Verify if you are getting the response body string as &apos;Created&apos;.</steps>
+										<expected>The Response body must show the string as &quot;Created&quot;
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C283</id>
+				<title>Verify if you are getting response as 201 Created</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-80</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoint &quot;https://restful-booker.herokuapp.com/ping&quot;
+</preconds>
+										<steps>1.Login to POSTMAN.
+2. Navigate to My workspace&gt;Collection&gt;Click Add new request
+3. Enter the PingHealth check URL &quot;https://restful-booker.herokuapp.com/ping&quot;
+4. Enter the script in the test tab
+pm.test(&quot;Status code is 201&quot;, function () {
+    pm.response.to.have.status(201);
+});
+pm.test(&quot;Body matches string&quot;, function () {
+    pm.expect(pm.response.text()).to.include(&quot;Created&quot;);
+});
+pm.test(&quot;Content-Type is present&quot;, function () {
+    pm.response.to.have.header(&quot;Content-Type&quot;);
+});
+5. Select GET request 
+6. Click the Send button
+7. Verify if you are getting the response body string as &apos;Created&apos;
+</steps>
+										<expected>The Response body must show the string as &apos;Created&apos;
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C284</id>
+				<title>Verify if Response Header has content type</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-81</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoints &quot;https://restful-booker.herokuapp.com/ping&quot;
+</preconds>
+										<steps>1. Login to POSTMAN.
+2. Navigate to My workspace&gt;Collection&gt;Click Add new request
+3. Enter the PingHealth check URL &quot;https://restful-booker.herokuapp.com/ping&quot;
+4. Enter the script in the test tab
+pm.test(&quot;Content-Type is present&quot;, function () {
+    pm.response.to.have.header(&quot;Content-Type&quot;);
+});
+5. Select GET request.
+6. Click the Send button.
+7. Verify if the Response Header has content type</steps>
+										<expected>The Response header must have a content type
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C285</id>
+				<title>Verify if Response time is lessthan 200ms</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-82</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoints &quot;https://restful-booker.herokuapp.com/booking&quot;</preconds>
+										<steps>1. Login to POSTMAN.
+2. Import the Curl command using Raw text format &quot;curl -i https://restful-booker.herokuapp.com/booking&quot;
+3. Enter the script in the test tab.
+pm.test(&quot;Response time is less than 200ms&quot;, function () {
+    pm.expect(pm.response.responseTime).to.be.below(200);
+});
+4. Click the send request button.  
+5. Verify if the Response time is less than 200ms.
+</steps>
+										<expected>The Response time must be less than 200ms
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C286</id>
+				<title>Verify if User is able to Fetch All bookings successfully</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-83</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoints &quot;https://restful-booker.herokuapp.com/booking&quot;.</preconds>
+										<steps>1. log in to the POSTMAN tool
+2. In the POSTMan tool, Import the Curl command using the Raw text format
+&quot;curl -i https://restful-booker.herokuapp.com/booking&quot;.
+3. Enter the script in the test tab.
+pm.test(&quot;Body matches string&quot;, function () {
+    pm.expect(pm.response.text()).to.include(&quot;bookingid&quot;);
+});
+4. Click the send request button.
+5. Verify the response body.
+
+
+</steps>
+										<expected>The API must fetch all bookings.
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C287</id>
+				<title>Verify  JSON Response for Get all Booking</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-84</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoints &quot;https://restful-booker.herokuapp.com/booking&quot;</preconds>
+										<steps>1. log in to the POSTMAN tool
+2. In the POSTMan tool, Import the Curl command using Raw text format.
+&quot;curl -i https://restful-booker.herokuapp.com/booking&quot;.
+3. Enter the script in the test tab.
+pm.test(&quot;Body matches string&quot;, function () {
+    pm.expect(pm.response.text()).to.include(&quot;bookingid&quot;);
+});
+4. Click the send request button.
+5. Verify the response body.
+
+
+</steps>
+										<expected>The Response body must show list of all bookings
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C288</id>
+				<title>Verify Get All Booking  status code When all bookings are deleted</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-85</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoints &quot;https://restful-booker.herokuapp.com/booking&quot;</preconds>
+										<steps>1. Login to the POSTMAN tool
+2. In the POSTMan tool, Import the Curl command using Raw text formal
+curl -i https://restful-booker.herokuapp.com/booking.
+3. Enter the script in the test tab.
+pm.test(&quot;Status code is 404&quot;, function () {
+    pm.response.to.have.status(404);
+});
+4. Click the send request button.
+5. Verify the status code when all bookings are deleted
+
+
+</steps>
+										<expected>The Status code must be 404 for all booking deleted
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C289</id>
+				<title>Verify Status code for Get All bookings when all booking id is fetched</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-86</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoints &quot;https://restful-booker.herokuapp.com/booking&quot;.</preconds>
+										<steps>1. Login to the POSTMAN tool
+2. In the POSTMan tool, Import the Curl command using Raw text format.
+curl -i https://restful-booker.herokuapp.com/booking
+3. Enter the script in the test tab.
+pm.test(&quot;Status code is 200&quot;, function () {
+    pm.response.to.have.status(200);
+});
+4. Click the send request button.
+5. Verify the status code when all bookings are fetched successfully.
+
+</steps>
+										<expected>The Status code must be 200 for all booking deleted
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C290</id>
+				<title>Verify if Response time is lessthan 200ms</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-87</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoints &quot;https://restful-booker.herokuapp.com/booking/x&quot;</preconds>
+										<steps>1. Login to the POSTMAN tool
+2. In POSTMan tool, Import the Curl command using Raw text formal
+curl -i https://restful-booker.herokuapp.com/booking/x
+
+x--&amp;gt;x can be your preferred booking id 
+
+3. Enter the script in the test tab.
+pm.test(&quot;Response time is less than 200ms&quot;, function () {
+    pm.expect(pm.response.responseTime).to.be.below(200);
+});
+
+
+4. Click the send request button.
+5. Verify if the Response time is less than 200ms.
+
+
+</steps>
+										<expected>Successful action and The Response time must be less than 200ms
+
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C291</id>
+				<title>Verify if User is able to Fetch Single bookings</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-88</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoints &quot;https://restful-booker.herokuapp.com/booking/x&quot;.</preconds>
+										<steps>1. Login to the POSTMAN tool
+2. In POSTMan tool, Import the Curl command using Raw text formal
+curl -i https://restful-booker.herokuapp.com/booking/x
+
+x--&amp;gt;x can be your preferred booking id.
+
+
+3. Click the send request button.
+4. Verify the response body.
+</steps>
+										<expected>The API must fetch the single booking which you requested.
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C292</id>
+				<title>Verify JSON Response for Get Single Booking</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-89</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoints &quot;https://restful-booker.herokuapp.com/booking/x&quot;.</preconds>
+										<steps>1. Login to the POSTMAN tool
+2. In POSTMan tool, Import the Curl command using Raw text formal
+curl -i https://restful-booker.herokuapp.com/booking/x
+
+x--&amp;gt;x can be your preferred booking id.
+
+3. Click the send request button.
+4. Verify the response body.
+</steps>
+										<expected>The Response body must show the booking requested.
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C293</id>
+				<title>Verify status code When all bookings are deleted</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-90</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoints &quot;https://restful-booker.herokuapp.com/booking/x&quot;
+</preconds>
+										<steps>1. Login to the POSTMAN tool
+2. In POSTMan tool, Import the Curl command using Raw text formal
+curl -i https://restful-booker.herokuapp.com/booking/x
+
+x--&amp;gt;x can be your preferred booking id.
+
+3. Enter the script in the test tab.
+pm.test(&quot;Status code is 404&quot;, function () {
+    pm.response.to.have.status(404);
+});
+4. Click the send request button.
+5. Verify the response code.
+
+
+</steps>
+										<expected>The Response code must be 404</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C294</id>
+				<title>Verify Status code for Get Single booking</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-91</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoints &quot;https://restful-booker.herokuapp.com/booking/x&quot;.</preconds>
+										<steps>1. Login to the POSTMAN tool.
+2. In the POSTMan tool, Import the Curl command using Raw text format.
+curl -i https://restful-booker.herokuapp.com/booking/x
+
+x--&amp;gt;x can be your preferred booking id. 
+
+3. Enter the script in the test tab.
+pm.test(&quot;&quot;Status code is 200&quot;&quot;, function () {
+    pm.response.to.have.status(200);
+});
+4. Click the send request button.
+5. Verify the response code.
+
+</steps>
+										<expected>The Response code must be 200</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C295</id>
+				<title>Verify if user is able to Create New resource</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-92</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoints &quot;https://restful-booker.herokuapp.com/booking&quot;.</preconds>
+										<steps>1. Login to the POSTMAN tool
+2. In the POSTMan tool, Import the Curl command using Raw text format
+https://restful-booker.herokuapp.com/booking
+3. Enter the script in the test tab.
+pm.test(&quot;&quot;&quot;&quot;Status code is 200&quot;&quot;&quot;&quot;, function () {
+    pm.response.to.have.status(200);
+});
+4. Click the send request button.
+5. Verify the response code.
+
+</steps>
+										<expected>The Response code must be 200</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C296</id>
+				<title>Verify JSON Response for Successful POST Request</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-94</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoints &quot;https://restful-booker.herokuapp.com/booking&quot;</preconds>
+										<steps>1. Login to the POSTMAN tool.
+2. In the POSTMan tool, Import the Curl command using Raw text format.
+https://restful-booker.herokuapp.com/booking.
+3. Click the send request button.
+4. Verify the response.</steps>
+										<expected>The Response must be
+{
+    &quot;bookingid&quot;: 1,
+    &quot;booking&quot;: {
+        &quot;firstname&quot;: &quot;Jim&quot;,
+        &quot;lastname&quot;: &quot;Brown&quot;,
+        &quot;totalprice&quot;: 111,
+        &quot;depositpaid&quot;: true,
+        &quot;bookingdates&quot;: {
+            &quot;checkin&quot;: &quot;2018-01-01&quot;,
+            &quot;checkout&quot;: &quot;2019-01-01&quot;
+        },
+        &quot;additionalneeds&quot;: &quot;Breakfast&quot;
+    }
+}</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C297</id>
+				<title>Verify the status code for successful POST Request</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-95</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoints &quot;https://restful-booker.herokuapp.com/booking&quot;</preconds>
+										<steps>1. Login to the POSTMAN tool
+2. In the POSTMan tool, Import the Curl command using Raw text format
+https://restful-booker.herokuapp.com/booking.
+3. Enter the script in the test tab.
+pm.test(&quot;&quot;&quot;&quot;Status code is 200&quot;&quot;&quot;&quot;, function () {
+    pm.response.to.have.status(200);
+});
+4. Click the send request button,
+5. Verify the response code.
+
+
+
+ 
+</steps>
+										<expected>The Response code must be 200</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C298</id>
+				<title>Verify if user is not  able to create new resource using POST request when Request json body sent has only 4 out of 8 fields</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-96</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoints &quot;https://restful-booker.herokuapp.com/booking&quot;.</preconds>
+										<steps>1. Login to the POSTMAN tool.
+2. In the POSTMan tool, Import the Curl command using Raw text format.
+https://restful-booker.herokuapp.com/booking
+3. In the request body Enter only 4 out of 8 fields.
+4. Click the send request button. 
+5. Verify the response code.
+</steps>
+										<expected>The Response code must be 500.
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C299</id>
+				<title>Verify the status code of POST request when Request is sent with Request json body containing only 4 out of 8 fields</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-97</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoints &quot;https://restful-booker.herokuapp.com/booking&quot;.</preconds>
+										<steps>1. Login to the POSTMAN tool.
+2. In the POSTMan tool, Import the Curl command using Raw text format.
+https://restful-booker.herokuapp.com/booking
+3. In the request body Enter only 4 out of 8 fields.
+4. Click the send request button.
+5. Verify the response code
+</steps>
+										<expected>The Response code must be 500
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C300</id>
+				<title>Verify the Response body for Successful PUT request</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-98</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoints &quot;https://restful-booker.herokuapp.com/booking/:id&quot;</preconds>
+										<steps>1. Login to the POSTMAN tool.
+2. In the POSTMan tool, Import the Curl command using Raw text format.
+https://restful-booker.herokuapp.com/booking/:id
+id=tester preference
+
+curl command:
+curl -X PUT \
+  https://restful-booker.herokuapp.com/booking/1 \
+  -H &apos;Content-Type: application/json&apos; \
+  -H &apos;Accept: application/json&apos; \
+  -H &apos;Cookie: token=abc123&apos; \
+  -d &apos;{
+    &quot;firstname&quot; : &quot;James&quot;,
+    &quot;lastname&quot; : &quot;Brown&quot;,
+    &quot;totalprice&quot; : 111,
+    &quot;depositpaid&quot; : true,
+    &quot;bookingdates&quot; : {
+        &quot;checkin&quot; : &quot;2018-01-01&quot;,
+        &quot;checkout&quot; : &quot;2019-01-01&quot;
+    },
+    &quot;additionalneeds&quot; : &quot;Breakfast&quot;
+}&apos;
+3. Click the send request button.
+4. Verify the response body and code.
+
+</steps>
+										<expected>The Response code must be 200 
+and response body must be
+HTTP/1.1 200 OK
+
+{
+    &quot;firstname&quot; : &quot;James&quot;,
+    &quot;lastname&quot; : &quot;Brown&quot;,
+    &quot;totalprice&quot; : 111,
+    &quot;depositpaid&quot; : true,
+    &quot;bookingdates&quot; : {
+        &quot;checkin&quot; : &quot;2018-01-01&quot;,
+        &quot;checkout&quot; : &quot;2019-01-01&quot;
+    },
+    &quot;additionalneeds&quot; : &quot;Breakfast&quot;
+}</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C301</id>
+				<title>Verify the Response header for successful PUT request</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-100</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoints &quot;https://restful-booker.herokuapp.com/booking/:id&quot;</preconds>
+										<steps>1. Login to the POSTMAN tool
+2. In the POSTMan tool, Import the Curl command using Raw text format
+https://restful-booker.herokuapp.com/booking/:id
+id=tester preference
+
+curl -X PUT \
+  https://restful-booker.herokuapp.com/booking/1 \
+  -H &apos;Content-Type: application/json&apos; \
+  -H &apos;Accept: application/json&apos; \
+  -H &apos;Cookie: token=abc123&apos; \
+  -d &apos;{
+    &quot;firstname&quot; : &quot;Virat&quot;,
+    &quot;lastname&quot; : &quot;Kohli&quot;,
+    &quot;totalprice&quot; : 111,
+    &quot;depositpaid&quot; : true,
+    &quot;bookingdates&quot; : {
+        &quot;checkin&quot; : &quot;2018-01-01&quot;,
+        &quot;checkout&quot; : &quot;2019-01-01&quot;
+    },
+    &quot;additionalneeds&quot; : &quot;Breakfast&quot;
+}
+3. Enter the script in the test tab.
+pm.test(&quot;Content-Type is present&quot;, function () {
+    pm.response.to.have.header(&quot;Content-Type&quot;);
+});
+
+3. Click the send request button.
+4. Verify the response header.
+
+
+</steps>
+										<expected>The Response code must be 200 
+
+
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C302</id>
+				<title>Verify the Status code for successful PUT request</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-101</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoints &quot;https://restful-booker.herokuapp.com/booking/:id&quot;</preconds>
+										<steps>1.Login to POSTMAN tool.
+2.In POSTMan tool ,Import the Curl command using Raw text format.
+https://restful-booker.herokuapp.com/booking/:id
+id=tester preference
+
+curl -X PUT \
+  https://restful-booker.herokuapp.com/booking/1 \
+  -H &apos;Content-Type: application/json&apos; \
+  -H &apos;Accept: application/json&apos; \
+  -H &apos;Cookie: token=abc123&apos; \
+  -d &apos;{
+    &quot;firstname&quot; : &quot;Virat&quot;,
+    &quot;lastname&quot; : &quot;Kohli&quot;,
+    &quot;totalprice&quot; : 111,
+    &quot;depositpaid&quot; : true,
+    &quot;bookingdates&quot; : {
+        &quot;checkin&quot; : &quot;2018-01-01&quot;,
+        &quot;checkout&quot; : &quot;2019-01-01&quot;
+    },
+    &quot;additionalneeds&quot; : &quot;Breakfast&quot;
+}
+3.Enter the script in the test tab.
+pm.test(&quot;Status code for successful PUT request is 200&quot;, function () {
+    pm.response.to.have.status(200);
+});
+4. Click the send request button.
+5. and Verify the status code.
+</steps>
+										<expected>The Response code must be 200 
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C303</id>
+				<title>Verify if the user is not able to do partial update using PUT request</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-102</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoints &quot;https://restful-booker.herokuapp.com/booking/1 \&quot;</preconds>
+										<steps>1.Login  to POSTMAN tool
+2.Import the curl command using raw text format
+curl -X PUT \
+  https://restful-booker.herokuapp.com/booking/1 \
+  -H &apos;Content-Type: application/json&apos; \
+  -H &apos;Accept: application/json&apos; \
+  -H &apos;Cookie: token=abc123&apos; \
+  -d &apos;{
+    &quot;firstname&quot; : &quot;James&quot;,
+    &quot;lastname&quot; : &quot;Brown&quot;,
+    &quot;totalprice&quot; : 111,
+   // &quot;depositpaid&quot; : true,
+    &quot;bookingdates&quot; : {
+        &quot;checkin&quot; : &quot;2018-01-01&quot;,
+        &quot;checkout&quot; : &quot;2019-01-01&quot;
+    },
+    &quot;additionalneeds&quot; : &quot;Breakfast&quot;
+}&apos;
+
+3.Enter the script in the test tab.
+pm.test(&quot;Status code is 400&quot;, function () {
+    pm.response.to.have.status(400);
+});
+
+pm.test(&quot;Status code name has string&quot;, function () {
+    pm.response.to.have.status(&quot;Bad Request&quot;);
+});
+
+
+4. Click the send request button.
+
+5. Verify if a user is not able to successfully update 
+the booking
+
+
+</steps>
+										<expected>The user must not be able to update the resource booking id
+and response status code must be 400 bad request</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C304</id>
+				<title>Verify the status code that user gets for trying Partial update using PUT request</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-103</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoints &quot; https://restful-booker.herokuapp.com/booking/1 \&quot;</preconds>
+										<steps>1.Login  to POSTMAN tool
+2.Import the curl command using raw text format
+curl -X PUT \
+  https://restful-booker.herokuapp.com/booking/1 \
+  -H &apos;Content-Type: application/json&apos; \
+  -H &apos;Accept: application/json&apos; \
+  -H &apos;Cookie: token=abc123&apos; \
+  -d &apos;{
+    &quot;firstname&quot; : &quot;James&quot;,
+    &quot;lastname&quot; : &quot;Brown&quot;,
+    &quot;totalprice&quot; : 111,
+   // &quot;depositpaid&quot; : true,
+    &quot;bookingdates&quot; : {
+        &quot;checkin&quot; : &quot;2018-01-01&quot;,
+        &quot;checkout&quot; : &quot;2019-01-01&quot;
+    },
+    &quot;additionalneeds&quot; : &quot;Breakfast&quot;
+}&apos;
+
+3. Enter the script in the test tab.
+pm.test(&quot;Status code is 400&quot;, function () {
+    pm.response.to.have.status(400);
+});
+
+pm.test(&quot;Status code name has string&quot;, function () {
+    pm.response.to.have.status(&quot;Bad Request&quot;);
+});
+
+4. Click send request button.
+
+5. Verify if user is not able to successfully update 
+the booking
+
+</steps>
+										<expected>The user must not be able to update the resource bookingid
+and response statuscode must be 400 bad request</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C305</id>
+				<title>Verify the JSON Response body for PATCH request</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-104</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoints &quot; https://restful-booker.herokuapp.com/booking/938 \&quot;</preconds>
+										<steps>1.Login  to POSTMAN tool
+2.Import the curl command using raw text format
+curl -X PUT \
+  https://restful-booker.herokuapp.com/booking/938 \
+  -H &apos;Content-Type: application/json&apos; \
+  -H &apos;Accept: application/json&apos; \
+  -H &apos;Cookie: token=abc123&apos; \
+  -d &apos;{
+    &quot;firstname&quot; : &quot;QATesterFirstnam&quot;,
+    &quot;lastname&quot; : &quot;QAtesterLastName&quot;
+}&apos;
+3. Verify if the user can partially update resource booking 938 successfully
+4. verify the response body of the patch request
+</steps>
+										<expected>The response body must be as below
+
+{
+    &quot;firstname&quot;: &quot;QATesterFirstName&quot;,
+    &quot;lastname&quot;: &quot;QATesterLastName&quot;,
+    &quot;totalprice&quot;: 0,
+    &quot;depositpaid&quot;: false,
+    &quot;bookingdates&quot;: {
+        &quot;checkin&quot;: &quot;2018-01-07&quot;,
+        &quot;checkout&quot;: &quot;2019-01-07&quot;
+    },
+    &quot;additionalneeds&quot;: &quot;Breakfast,Lunch,Dinner&quot;
+}
+</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C306</id>
+				<title>Verify the Response header for PATCH Request</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C307</id>
+				<title>Verify the status code for successful PATCH Request</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-107</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to the endpoint &quot;https://restful-booker.herokuapp.com/booking/938&quot;</preconds>
+										<steps>1. Login  to POSTMAN tool
+2.Import the curl command using raw text format
+curl -X PUT \
+  https://restful-booker.herokuapp.com/booking/938 \
+  -H &apos;Content-Type: application/json&apos; \
+  -H &apos;Accept: application/json&apos; \
+  -H &apos;Cookie: token=abc123&apos; \
+  -d &apos;{
+    &quot;firstname&quot; : &quot;QATesterFirstnam&quot;,
+    &quot;lastname&quot; : &quot;QAtesterLastName&quot;
+}&apos;
+3.Enter Script in the test tab
+pm.test(&quot;Successful PATCH Request&quot;, function () {
+    pm.expect(pm.response.code).to.be.oneOf([200, 200]);
+});
+
+4. Verify if the user is able to partially update resource booking 938 successfully
+5. verify the  status code for a successful patch request
+
+
+</steps>
+										<expected>The response body must be as below with 200 status
+
+{
+    &quot;&quot;firstname&quot;&quot;: &quot;&quot;QATesterFirstName&quot;&quot;,
+    &quot;&quot;lastname&quot;&quot;: &quot;&quot;QATesterLastName&quot;&quot;,
+    &quot;&quot;totalprice&quot;&quot;: 0,
+    &quot;&quot;depositpaid&quot;&quot;: false,
+    &quot;&quot;bookingdates&quot;&quot;: {
+        &quot;&quot;checkin&quot;&quot;: &quot;&quot;2018-01-07&quot;&quot;,
+        &quot;&quot;checkout&quot;&quot;: &quot;&quot;2019-01-07&quot;&quot;
+    },
+    &quot;&quot;additionalneeds&quot;&quot;: &quot;&quot;Breakfast,Lunch,Dinner&quot;&quot;
+}</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C308</id>
+				<title>Verify if user is able to perform PATCH request successfully without authorization</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-108</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoint &quot;https://restful-booker.herokuapp.com/booking/938 \&quot;</preconds>
+										<steps>1.Login  to POSTMAN tool
+2.Import the curl command using raw text format
+curl -X PUT \
+  https://restful-booker.herokuapp.com/booking/938 \
+  -H &apos;Content-Type: application/json&apos; \
+  -H &apos;Accept: application/json&apos; \
+  -H &apos;Cookie: token=abc123&apos; \
+  -d &apos;{
+    &quot;firstname&quot; : &quot;QATesterFirstnam&quot;,
+    &quot;lastname&quot; : &quot;QAtesterLastName&quot;
+}&apos;
+3.Navigate to authorization tab and make sure 
+a)you dont provide credentials to authorize the Patch request
+b)Leave it as blank
+4.Click send request button
+5.Verify if user is not able to perform PATCH request
+</steps>
+										<expected>The patch request must fail and status code must be 403</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C309</id>
+				<title>Verify if user is able to perform PATCH request by providing JSON request body as blank</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+									</custom>
+							</case>
+															<case>
+				<id>C310</id>
+				<title>Verify is user is getting correct error code for failed PATCH request</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references>RB-109</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>user has access to endpoint &quot;https://restful-booker.herokuapp.com/booking/938 \&quot;</preconds>
+										<steps>1.Login  to POSTMAN tool
+2.Import the curl command using raw text format
+curl -X PUT \
+  https://restful-booker.herokuapp.com/booking/938 \
+  -H &apos;Content-Type: application/json&apos; \
+  -H &apos;Accept: application/json&apos; \
+  -H &apos;Cookie: token=abc123&apos; \
+  -d &apos;{
+    &quot;&quot;firstname&quot;&quot; : &quot;&quot;QATesterFirstnam&quot;&quot;,
+    &quot;&quot;lastname&quot;&quot; : &quot;&quot;QAtesterLastName&quot;&quot;
+}&apos;
+3.Navigate to authorization tab and make sure 
+a)you dont provide credentials to authorize the Patch request
+b)Leave it as blank
+4.Click send request button
+5.Verify is user is getting correct error code for failed PATCH request
+6.Provide authorization and change the input field name against the requirement and send the patch request
+{
+    &quot;Helloname&quot; : &quot;QA&quot;,
+    &quot;middlename&quot; : &quot;QAlast&quot;
+}
+7.Verify the status code
+</steps>
+										<expected>Status code must be 400 for incorrect syntax</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C311</id>
+				<title>Verify if user is able to delete all bookings</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Medium</priority>
+																				<estimate></estimate>
+																								<references></references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<steps>1.Login  to POSTMAN tool
+2.Import the curl command using raw text format
+curl -X DELETE \
+  https://restful-booker.herokuapp.com/booking/2952 \
+  -H &apos;Content-Type: application/json&apos; \
+  -H &apos;Cookie: token=abc123&apos;
+3.Click send request
+4.Verify if user is able to delete the booking successfully
+5.Verify the status code
+
+</steps>
+										<expected>1.Successful login
+2.Import request successful
+3.User must be able to perform SEND rrequest
+4.The user must be able delete booking id 2952 successfully if it is not previously deleted
+5.The status code must be 200</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C312</id>
+				<title>Verify if createToken accepts different username and/or password</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Low</priority>
+								<assignedto>Emmanuel Teoxon</assignedto>
+												<estimate></estimate>
+																								<references>RB-75</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Must be connected to the internet.
+
+2. User has access to the API documentation.
+
+3. Postman needs to be up and active.
+
+4. User has created a Collections folder in Postman.
+</preconds>
+										<steps>1. Copy the cURL from the API Documentation of createToken booking.
+
+2. Click Import found within the upper left side of the Postman&apos;s workspace.
+
+3. On the Body tab, located in the upper mid part of your workspace, change the default username and/or password into any alphanumeric input of your choice.                                                                                                                             
+
+4. Save the changes to your Collections folder, then click Send.
+</steps>
+										<expected>User should not be able to use different credentials as username and/or password</expected>
+									</custom>
+							</case>
+															<case>
+				<id>C313</id>
+				<title>Verify if PartialUpdate accepts non-alphabet character inputs in firstname and lastname field</title>
+												<template>Test Case (Text)</template>
+																<type>Other</type>
+																<priority>Low</priority>
+								<assignedto>Emmanuel Teoxon</assignedto>
+												<estimate></estimate>
+																								<references>RB-76</references>
+																				<custom>
+										<automation_type><id>0</id><value> None</value></automation_type>
+										<preconds>1. Must be connected to the internet.
+
+2. User has access the API documentation
+
+3. Postman needs to be up and active.
+
+4. User has a &quot;PartialUpdate booking with PATCH request, default settings&quot;, in Postman.
+
+</preconds>
+										<steps>1. Go to the Body tab, below the URL field.
+
+2. Modify the firstname and/or lastname inputs by adding special characters.
+
+3. Click Save, then Send.</steps>
+										<expected>Firstname and/or Lastname inputs with special characters should not be accepted.</expected>
+									</custom>
+							</case>
+								</cases>
+							</section>
+	</sections>
+</suite>
