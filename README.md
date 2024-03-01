@@ -30,10 +30,10 @@ Validate API's ability to handle unexpected errors gracefully.
 # Artifacts
 This project includes:
 
-## Test Plan: Document outlining the testing strategy, scope, inclusions, test environments, and schedule.    
-## API Documentation: https://restful-booker.herokuapp.com/apidoc/index.html
-## Test Cases: Test cases covering various aspects of the Restful Booker API.
-## Tools: JIRA, TestRail, Postman, snipping screenshot tools, Word, and Excel documents.
+### Test Plan: Document outlining the testing strategy, scope, inclusions, test environments, and schedule.    
+### API Documentation: https://restful-booker.herokuapp.com/apidoc/index.html
+### Test Cases: Test cases covering various aspects of the Restful Booker API.
+### Tools: JIRA, TestRail, Postman, snipping screenshot tools, Word, and Excel documents.
 
 
 
